@@ -19,7 +19,9 @@ Resources:
       Description: AWS利用料を通知するbot
       MemorySize: 128
       Timeout: 60
-      Role: arn:aws:iam::561742202062:role/CodeStarWorker-billing-bot-Lambda
+      Role:
+        Fn::ImportValue:
+          !Join ['-', [!Ref 'ProjectId', !Ref 'AWS::Region', 'LambdaTrustRole']]
       Events:
         Schedule1:
           Type: Schedule
